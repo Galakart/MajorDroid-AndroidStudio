@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dostup">
+		<item>Локальный</item>
+		<item>Глобальный</item>
+		<item>Автоматический</item>
+	</string-array>
+	
+    <string-array name="vid">
+		<item>Обычный</item>
+		<item>Полноэкранный</item>
+		<item>Полноэкранный (без панели кнопок)</item>
+	</string-array>
+
+	<string-array name="onofflist">
+		<item>Выкл</item>
+		<item>Вкл</item>
+	</string-array>
+</resources>

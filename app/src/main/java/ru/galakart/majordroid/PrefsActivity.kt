@@ -41,7 +41,7 @@ class PrefsActivity : PreferenceActivity() {
         currentSSID = wifiInfo.ssid
         tmpPrefSSID = prefs.getString("wifihomenet", "")
 
-        val button = findPreference("button") as Preference
+        val button = findPreference("buttonWifiHomeNet") as Preference
         button.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             ad = AlertDialog.Builder(this@PrefsActivity)
             ad.setTitle("Выбор домашней Wifi-сети") // заголовок

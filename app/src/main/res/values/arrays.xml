@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="dostup">
-		<item>Локальный</item>
-		<item>Глобальный</item>
-		<item>Автоматический</item>
+    <string-array name="access">
+		<item>@string/local</item>
+		<item>@string/global</item>
+		<item>@string/automatic</item>
 	</string-array>
 	
-    <string-array name="vid">
-		<item>Обычный</item>
-		<item>Полноэкранный</item>
-		<item>Полноэкранный (без панели кнопок)</item>
+    <string-array name="view">
+		<item>@string/plain</item>
+		<item>@string/fullscreen</item>
+		<item>@string/megafullscreen</item>
 	</string-array>
 
 	<string-array name="onofflist">
-		<item>Выкл</item>
-		<item>Вкл</item>
+		<item>@string/off</item>
+		<item>@string/on</item>
 	</string-array>
 </resources>

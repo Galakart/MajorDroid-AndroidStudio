@@ -15,7 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
-        android:src="@drawable/logo_about" />
+        android:src="@drawable/logo_about"
+        android:contentDescription="logo" />
 
     <TextView
         android:id="@+id/tv_donate"
@@ -27,7 +28,7 @@
         android:layout_marginBottom="105dp"
         android:gravity="center_horizontal"
         android:scrollbars="vertical"
-        android:text="@string/about_donate" />
+        android:text="@string/about_info" />
 
     <Button
         android:id="@+id/btn_rate"
@@ -37,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
         android:onClick="btn_rate_exec"
-        android:text="@string/title_btn_rate" />
+        android:text="@string/rateinmarket" />
 
     <TextView
         android:id="@+id/tv_url"

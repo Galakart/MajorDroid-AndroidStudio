@@ -15,7 +15,7 @@ class AboutActivity : Activity() {
 
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.vid), "")
+        val vid = prefs.getString(getString(R.string.view), "")
         if (vid!!.contains("Обычный")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)

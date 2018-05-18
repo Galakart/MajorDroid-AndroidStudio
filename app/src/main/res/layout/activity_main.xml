@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".MainActivity">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,35 +20,39 @@
             android:shrinkColumns="*"
             android:stretchColumns="*">
 
-            <TableRow>
+            <TableRow tools:ignore="UselessParent">
 
                 <ImageView
                     android:id="@+id/imgb_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="imgb_home_click"
-                    android:src="@drawable/ic_action_home" />
+                    android:src="@drawable/ic_action_home"
+                    android:contentDescription="@string/imgdescription" />
 
                 <ImageView
                     android:id="@+id/imgb_voice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="imgb_voice_click"
-                    android:src="@drawable/ic_action_voice" />
+                    android:src="@drawable/ic_action_voice"
+                    android:contentDescription="@string/imgdescription" />
 
                 <ImageView
                     android:id="@+id/imgb_pult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="imgb_pult_click"
-                    android:src="@drawable/ic_action_pult" />
+                    android:src="@drawable/ic_action_pult"
+                    android:contentDescription="@string/imgdescription" />
 
                 <ImageView
                     android:id="@+id/imgb_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="imgb_settings_click"
-                    android:src="@drawable/ic_action_settings" />
+                    android:src="@drawable/ic_action_settings"
+                    android:contentDescription="@string/imgdescription" />
             </TableRow>
         </TableLayout>
 
@@ -58,7 +61,6 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="5dp"
-            android:layout_centerVertical="true"
             android:padding="1dip" />
 
         <WebView

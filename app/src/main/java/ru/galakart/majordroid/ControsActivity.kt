@@ -29,8 +29,8 @@ class ControsActivity : Activity() {
         super.onCreate(savedInstanceState)
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.vid), "")
-        pathScripts = prefs.getString(getString(R.string.path_scripts), "")
+        val vid = prefs.getString(getString(R.string.view), "")
+        pathScripts = prefs.getString(getString(R.string.scriptprocessor_default), "")
         if (vid!!.contains("Обычный")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
@@ -66,9 +66,9 @@ class ControsActivity : Activity() {
         super.onResume()
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val localURL = prefs!!.getString(getString(R.string.localUrl), "")
-        val globalURL = prefs!!.getString(getString(R.string.globalUrl), "")
-        val dostup = prefs!!.getString(getString(R.string.dostup), "")
+        val localURL = prefs!!.getString(getString(R.string.localaddress), "")
+        val globalURL = prefs!!.getString(getString(R.string.globaladdress), "")
+        val dostup = prefs!!.getString(getString(R.string.access), "")
         login = prefs!!.getString(getString(R.string.login), "")
         passw = prefs!!.getString(getString(R.string.passw), "")
         scriptnames[0] = prefs!!.getString(getString(R.string.scriptname1), "")

@@ -20,7 +20,7 @@ class PrefsActivity : PreferenceActivity() {
         super.onCreate(savedInstanceState)
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.vid), "")
+        val vid = prefs.getString(getString(R.string.view), "")
 
         if (vid!!.contains("Обычный")) {
             window.addFlags(

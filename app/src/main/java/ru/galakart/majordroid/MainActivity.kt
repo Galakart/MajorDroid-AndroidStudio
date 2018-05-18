@@ -125,14 +125,14 @@ class MainActivity : Activity() {
     private fun loadHomePage(immediateLoad: Int) {
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        localURL = prefs.getString(getString(R.string.localUrl), "")
-        globalURL = prefs.getString(getString(R.string.globalUrl), "")
-        pathHomepage = prefs.getString(getString(R.string.path_homepage), "")
-        pathVoice = prefs.getString(getString(R.string.path_voice), "")
+        localURL = prefs.getString(getString(R.string.localaddress), "")
+        globalURL = prefs.getString(getString(R.string.globaladdress), "")
+        pathHomepage = prefs.getString(getString(R.string.homepage_default), "")
+        pathVoice = prefs.getString(getString(R.string.voiceprocessor_default), "")
         login = prefs.getString(getString(R.string.login), "")
         passw = prefs.getString(getString(R.string.passw), "")
-        val dostup = prefs.getString(getString(R.string.dostup), "")
-        val vid = prefs.getString(getString(R.string.vid), "")
+        val dostup = prefs.getString(getString(R.string.access), "")
+        val vid = prefs.getString(getString(R.string.view), "")
         val wifiHomeNet = prefs.getString("wifihomenet", "")
         var wifiToast = ""
         val tl = findViewById<View>(R.id.homeTableLay) as TableLayout

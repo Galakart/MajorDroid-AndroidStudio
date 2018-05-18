@@ -21,15 +21,15 @@
         </activity>
         <activity
             android:name=".ControsActivity"
-            android:label="@string/title_activity_contros" >
+            android:label="@string/contros" >
         </activity>
         <activity
             android:name=".PrefsActivity"
-            android:label="@string/action_settings" >
+            android:label="@string/settings" >
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:label="@string/about" >
         </activity>
     </application>
 

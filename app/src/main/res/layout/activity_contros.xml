@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:background="@android:color/black"
     android:paddingLeft="10dip"
     android:paddingRight="10dip" >
 
@@ -20,21 +21,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script1_exec"
-                android:src="@drawable/cooltext1" />
+                android:src="@drawable/cooltext1"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script2_exec"
-                android:src="@drawable/cooltext2" />
+                android:src="@drawable/cooltext2"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script3_exec"
-                android:src="@drawable/cooltext3" />
+                android:src="@drawable/cooltext3"
+                android:contentDescription="@string/imgdescription" />
         </TableRow>
 
         <TableRow>
@@ -44,21 +48,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script4_exec"
-                android:src="@drawable/cooltext4" />
+                android:src="@drawable/cooltext4"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script5"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script5_exec"
-                android:src="@drawable/cooltext5" />
+                android:src="@drawable/cooltext5"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script6"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script6_exec"
-                android:src="@drawable/cooltext6" />
+                android:src="@drawable/cooltext6"
+                android:contentDescription="@string/imgdescription" />
         </TableRow>
 
         <TableRow>
@@ -68,28 +75,32 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script7_exec"
-                android:src="@drawable/cooltext7" />
+                android:src="@drawable/cooltext7"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script8_exec"
-                android:src="@drawable/cooltext8" />
+                android:src="@drawable/cooltext8"
+                android:contentDescription="@string/imgdescription" />
 
             <ImageView
                 android:id="@+id/imgb_script9"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="imgb_script9_exec"
-                android:src="@drawable/cooltext9" />
+                android:src="@drawable/cooltext9"
+                android:contentDescription="@string/imgdescription" />
         </TableRow>
 
         <TextView
             android:id="@+id/textView_legend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:textColor="@android:color/white" />
     </TableLayout>
 
     <WebView

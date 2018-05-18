@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/black"
     tools:context=".AboutActivity" >
 
     <ImageView
@@ -16,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
         android:src="@drawable/logo_about"
-        android:contentDescription="logo" />
+        android:contentDescription="@string/imgdescription" />
 
     <TextView
         android:id="@+id/tv_donate"
@@ -28,7 +29,8 @@
         android:layout_marginBottom="105dp"
         android:gravity="center_horizontal"
         android:scrollbars="vertical"
-        android:text="@string/about_info" />
+        android:text="@string/about_info"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btn_rate"
@@ -48,6 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:autoLink="web"
-        android:text="@string/about_url" />
+        android:text="@string/about_url"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

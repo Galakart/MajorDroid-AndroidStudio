@@ -125,33 +125,33 @@ class MainActivity : Activity() {
     private fun loadHomePage(immediateLoad: Int) {
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        localURL = prefs.getString(getString(R.string.localaddress), "")
-        globalURL = prefs.getString(getString(R.string.globaladdress), "")
-        pathHomepage = prefs.getString(getString(R.string.homepage_default), "")
-        pathVoice = prefs.getString(getString(R.string.voiceprocessor_default), "")
-        login = prefs.getString(getString(R.string.login), "")
-        passw = prefs.getString(getString(R.string.passw), "")
-        val dostup = prefs.getString(getString(R.string.access), "")
-        val vid = prefs.getString(getString(R.string.view), "")
+        localURL = prefs.getString("localaddress", "")
+        globalURL = prefs.getString("globaladdress", "")
+        pathHomepage = prefs.getString("homepage", "")
+        pathVoice = prefs.getString("voiceprocessor", "")
+        login = prefs.getString("login", "")
+        passw = prefs.getString("passw", "")
+        val dostup = prefs.getString("access", "")
+        val vid = prefs.getString("view", "")
         val wifiHomeNet = prefs.getString("wifihomenet", "")
         var wifiToast = ""
         val tl = findViewById<View>(R.id.homeTableLay) as TableLayout
 
-        if (vid!!.contains("Обычный")) {
+        if (vid!!.contains("1")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             tl.visibility = View.VISIBLE
         }
 
-        if (vid.contains("Полноэкранный")) {
+        if (vid.contains("2")) {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.clearFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             tl.visibility = View.VISIBLE
         }
 
-        if (vid.contains("Полноэкранный (без панели кнопок)")) {
+        if (vid.contains("3")) {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.clearFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
@@ -161,19 +161,19 @@ class MainActivity : Activity() {
         if (dostup != tmpDostupAccess)
             firstLoad = false
 
-        if (dostup!!.contains("Локальный")) {
+        if (dostup!!.contains("1")) {
             outAccess = false
             serverURL = localURL
             wifiToast = ""
             tmpDostupAccess = dostup
 
-        } else if (dostup.contains("Глобальный")) {
+        } else if (dostup.contains("2")) {
             outAccess = true
             serverURL = globalURL
             wifiToast = ""
             tmpDostupAccess = dostup
 
-        } else if (dostup.contains("Автоматический")) {
+        } else if (dostup.contains("3")) {
             if (wifiHomeNet !== "") {
                 if (isConnectedToSSID(wifiHomeNet)) {
                     outAccess = false

@@ -20,7 +20,7 @@
         android:contentDescription="@string/imgdescription" />
 
     <TextView
-        android:id="@+id/tv_donate"
+        android:id="@+id/tvDonate"
         style="@android:style/TextAppearance.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,17 +33,17 @@
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/btn_rate"
+        android:id="@+id/rateExec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:onClick="btn_rate_exec"
+        android:onClick="rateExec"
         android:text="@string/rateinmarket" />
 
     <TextView
-        android:id="@+id/tv_url"
+        android:id="@+id/tvUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

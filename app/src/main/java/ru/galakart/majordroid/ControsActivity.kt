@@ -29,14 +29,14 @@ class ControsActivity : Activity() {
         super.onCreate(savedInstanceState)
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.view), "")
-        pathScripts = prefs.getString(getString(R.string.scriptprocessor_default), "")
-        if (vid!!.contains("Обычный")) {
+        val vid = prefs.getString("view", "")
+        pathScripts = prefs.getString("scriptprocessor_default", "")
+        if (vid!!.contains("1")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
-        if (vid.contains("Полноэкранный")) {
+        if (vid.contains("2")) {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.clearFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
@@ -66,24 +66,24 @@ class ControsActivity : Activity() {
         super.onResume()
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val localURL = prefs!!.getString(getString(R.string.localaddress), "")
-        val globalURL = prefs!!.getString(getString(R.string.globaladdress), "")
-        val dostup = prefs!!.getString(getString(R.string.access), "")
-        login = prefs!!.getString(getString(R.string.login), "")
-        passw = prefs!!.getString(getString(R.string.passw), "")
-        scriptnames[0] = prefs!!.getString(getString(R.string.scriptname1), "")
-        scriptnames[1] = prefs!!.getString(getString(R.string.scriptname2), "")
-        scriptnames[2] = prefs!!.getString(getString(R.string.scriptname3), "")
-        scriptnames[3] = prefs!!.getString(getString(R.string.scriptname4), "")
-        scriptnames[4] = prefs!!.getString(getString(R.string.scriptname5), "")
-        scriptnames[5] = prefs!!.getString(getString(R.string.scriptname6), "")
-        scriptnames[6] = prefs!!.getString(getString(R.string.scriptname7), "")
-        scriptnames[7] = prefs!!.getString(getString(R.string.scriptname8), "")
-        scriptnames[8] = prefs!!.getString(getString(R.string.scriptname9), "")
-        if (dostup!!.contains("Локальный")) {
+        val localURL = prefs!!.getString("localaddress", "")
+        val globalURL = prefs!!.getString("globaladdress", "")
+        val dostup = prefs!!.getString("access", "")
+        login = prefs!!.getString("login", "")
+        passw = prefs!!.getString("passw", "")
+        scriptnames[0] = prefs!!.getString("scriptname1", "")
+        scriptnames[1] = prefs!!.getString("scriptname2", "")
+        scriptnames[2] = prefs!!.getString("scriptname3", "")
+        scriptnames[3] = prefs!!.getString("scriptname4", "")
+        scriptnames[4] = prefs!!.getString("scriptname5", "")
+        scriptnames[5] = prefs!!.getString("scriptname6", "")
+        scriptnames[6] = prefs!!.getString("scriptname7", "")
+        scriptnames[7] = prefs!!.getString("scriptname8", "")
+        scriptnames[8] = prefs!!.getString("scriptname9", "")
+        if (dostup!!.contains("1")) {
             outAccess = false
             serverURL = localURL
-        } else if (dostup.contains("Глобальный")) {
+        } else if (dostup.contains("2")) {
             outAccess = true
             serverURL = globalURL
         }

@@ -15,14 +15,14 @@ class AboutActivity : Activity() {
 
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.view), "")
-        if (vid!!.contains("Обычный")) {
+        val vid = prefs.getString("view", "")
+        if (vid!!.contains("1")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
 
-        if (vid.contains("Полноэкранный")) {
+        if (vid.contains("2")) {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.clearFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
@@ -31,7 +31,7 @@ class AboutActivity : Activity() {
         setContentView(R.layout.activity_about)
     }
 
-    fun btn_rate_exec(v: View) {
+    fun rateExec(v: View) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse("market://details?id=ru.galakart.majordroid")
         startActivity(intent)

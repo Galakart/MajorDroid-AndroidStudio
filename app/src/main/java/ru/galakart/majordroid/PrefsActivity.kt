@@ -20,15 +20,15 @@ class PrefsActivity : PreferenceActivity() {
         super.onCreate(savedInstanceState)
         val prefs = PreferenceManager
                 .getDefaultSharedPreferences(this)
-        val vid = prefs.getString(getString(R.string.view), "")
+        val vid = prefs.getString("view", "")
 
-        if (vid!!.contains("Обычный")) {
+        if (vid!!.contains("1")) {
             window.addFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
 
-        if (vid.contains("Полноэкранный")) {
+        if (vid.contains("2")) {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.clearFlags(
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)

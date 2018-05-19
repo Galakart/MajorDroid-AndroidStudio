@@ -45,15 +45,6 @@
     <string name="binding_summary">Устанавливает выполнение скриптов MajorDomo на выбранные кнопки</string>
     <string name="binding_title">Привяжите выбранную кнопку на скрипт MajorDomo</string>
     <string name="scriptname">Название скрипта в MajorDomo:</string>
-    <string name="scriptname1">Скрипт 1</string>
-    <string name="scriptname2">Скрипт 2</string>
-    <string name="scriptname3">Скрипт 3</string>
-    <string name="scriptname4">Скрипт 4</string>
-    <string name="scriptname5">Скрипт 5</string>
-    <string name="scriptname6">Скрипт 6</string>
-    <string name="scriptname7">Скрипт 7</string>
-    <string name="scriptname8">Скрипт 8</string>
-    <string name="scriptname9">Скрипт 9</string>
     <string name="scriptbutton1">Кнопка 1</string>
     <string name="scriptbutton2">Кнопка 2</string>
     <string name="scriptbutton3">Кнопка 3</string>

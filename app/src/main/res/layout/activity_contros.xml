@@ -20,7 +20,7 @@
                 android:id="@+id/imgb_script1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script1_exec"
+                android:onClick="imgbScript1Exec"
                 android:src="@drawable/cooltext1"
                 android:contentDescription="@string/imgdescription" />
 
@@ -28,7 +28,7 @@
                 android:id="@+id/imgb_script2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script2_exec"
+                android:onClick="imgbScript2Exec"
                 android:src="@drawable/cooltext2"
                 android:contentDescription="@string/imgdescription" />
 
@@ -36,7 +36,7 @@
                 android:id="@+id/imgb_script3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script3_exec"
+                android:onClick="imgbScript3Exec"
                 android:src="@drawable/cooltext3"
                 android:contentDescription="@string/imgdescription" />
         </TableRow>
@@ -47,7 +47,7 @@
                 android:id="@+id/imgb_script4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script4_exec"
+                android:onClick="imgbScript4Exec"
                 android:src="@drawable/cooltext4"
                 android:contentDescription="@string/imgdescription" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/imgb_script5"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script5_exec"
+                android:onClick="imgbScript5Exec"
                 android:src="@drawable/cooltext5"
                 android:contentDescription="@string/imgdescription" />
 
@@ -63,7 +63,7 @@
                 android:id="@+id/imgb_script6"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script6_exec"
+                android:onClick="imgbScript6Exec"
                 android:src="@drawable/cooltext6"
                 android:contentDescription="@string/imgdescription" />
         </TableRow>
@@ -74,7 +74,7 @@
                 android:id="@+id/imgb_script7"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script7_exec"
+                android:onClick="imgbScript7Exec"
                 android:src="@drawable/cooltext7"
                 android:contentDescription="@string/imgdescription" />
 
@@ -82,7 +82,7 @@
                 android:id="@+id/imgb_script8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script8_exec"
+                android:onClick="imgbScript8Exec"
                 android:src="@drawable/cooltext8"
                 android:contentDescription="@string/imgdescription" />
 
@@ -90,7 +90,7 @@
                 android:id="@+id/imgb_script9"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:onClick="imgb_script9_exec"
+                android:onClick="imgbScript9Exec"
                 android:src="@drawable/cooltext9"
                 android:contentDescription="@string/imgdescription" />
         </TableRow>

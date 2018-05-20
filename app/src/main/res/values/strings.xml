@@ -57,5 +57,19 @@
     <string name="about_url">v1.5 http://smartliving.ru</string>
     <string name="rateinmarket">Оценить в маркете</string>
     <string name="about_info">Приложение для управления сервером умного дома MajorDomo.\n\nЛицензия Beerware - каждый довольный пользователь может выпить пива в честь автора android-приложения</string>
+    <string name="noscript">Скрипт не задан</string>
+    <string name="scriptok">Скрипт выполнен</string>
+    <string name="scriptnotset">Кнопка не привязана к скрипту.\nЗадайте имя скрипта в настройках</string>
+    <string name="back">Назад</string>
+    <string name="cancel">Отмена</string>
+    <string name="message">Сообщение</string>
+    <string name="save">Сохранить</string>
+    <string name="wifiisoff">WiFi выключен или нет соединения</string>
+    <string name="wifialreadyset">Текущая WiFi-сеть совпадает с занесённой в память. Для записи другой домашней сети, подключитесь к ней</string>
+    <string name="wifititle">Выбор домашней Wifi-сети</string>
+    <string name="wifisetto">Установить домашнюю сеть на </string>
+    <string name="wificurrentnet">Текущая домашняя сеть: </string>
+    <string name="wifichoseto">Поменять её на </string>
+    <string name="wifisaved">Сеть сохранена</string>
 
 </resources>

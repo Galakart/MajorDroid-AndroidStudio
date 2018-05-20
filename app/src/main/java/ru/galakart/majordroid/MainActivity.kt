@@ -105,8 +105,8 @@ class MainActivity : Activity() {
     }
 
     inner class MajorDroidWebViewer : WebViewClient() {
-        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-            view.loadUrl(url)
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            view!!.loadUrl(request!!.getUrl().toString());
             return true
         }
 

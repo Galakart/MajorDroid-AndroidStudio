@@ -12,29 +12,28 @@ class AboutActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val prefs = PreferenceManager
-                .getDefaultSharedPreferences(this)
-        val vid = prefs.getString("view", "")
-        if (vid!!.contains("1")) {
-            window.addFlags(
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        }
-
-        if (vid.contains("2")) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            window.clearFlags(
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-        }
-
         setContentView(R.layout.activity_about)
+        setScreen()
     }
 
-    fun rateExec(v: View) {
+    private fun setScreen() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val vid = prefs.getString("view", "")
+        when (vid) {
+            "1" -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            }
+            "2" -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+            }
+        }
+    }
+
+    fun View.rateExec() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse("market://details?id=ru.galakart.majordroid")
         startActivity(intent)
     }
-
 }

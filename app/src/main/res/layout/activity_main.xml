@@ -26,7 +26,7 @@
                     android:id="@+id/imgb_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="imgb_home_click"
+                    android:onClick="imgbHomeClick"
                     android:src="@drawable/ic_action_home"
                     android:contentDescription="@string/imgdescription" />
 
@@ -34,7 +34,7 @@
                     android:id="@+id/imgb_voice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="imgb_voice_click"
+                    android:onClick="imgbVoiceClick"
                     android:src="@drawable/ic_action_voice"
                     android:contentDescription="@string/imgdescription" />
 
@@ -42,7 +42,7 @@
                     android:id="@+id/imgb_pult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="imgb_pult_click"
+                    android:onClick="imgbPultClick"
                     android:src="@drawable/ic_action_pult"
                     android:contentDescription="@string/imgdescription" />
 
@@ -50,21 +50,21 @@
                     android:id="@+id/imgb_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="imgb_settings_click"
+                    android:onClick="imgbSettingsClick"
                     android:src="@drawable/ic_action_settings"
                     android:contentDescription="@string/imgdescription" />
             </TableRow>
         </TableLayout>
 
         <ProgressBar
-            android:id="@+id/pB1"
+            android:id="@+id/pBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="5dp"
             android:padding="1dip" />
 
         <WebView
-            android:id="@+id/webview"
+            android:id="@+id/webView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 

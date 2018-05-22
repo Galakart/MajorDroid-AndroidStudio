@@ -12,18 +12,15 @@ import android.webkit.HttpAuthHandler
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_contros.*
 
 class ControsActivity : Activity() {
-    private var webPost: WebView? = null
-    private var serverURL: String? = null
-    private var login: String? = null
-    private var passw: String? = null
-    private var pathScripts: String? = ""
+    private var serverURL = ""
+    private var login = ""
+    private var passw = ""
+    private var pathScripts = ""
     private var outAccess = false
-    private var prefs: SharedPreferences? = null
-    private var tvLegend: TextView? = null
     private val scriptnames = arrayOfNulls<String>(9)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,16 +58,12 @@ class ControsActivity : Activity() {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             }
         }
-        webPost = findViewById<View>(R.id.webPost) as WebView
-        webPost!!.settings.javaScriptEnabled = true
         webPost!!.webViewClient = MajorDroidWebViewer()
-        tvLegend = findViewById<View>(R.id.textView_legend) as TextView
         tvLegend!!.movementMethod = ScrollingMovementMethod()
     }
 
     private fun loadSettings() {
-        prefs = PreferenceManager
-                .getDefaultSharedPreferences(this)
+        var prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val localURL = prefs!!.getString("localaddress", "")
         val globalURL = prefs!!.getString("globaladdress", "")
         val dostup = prefs!!.getString("access", "")

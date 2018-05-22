@@ -6,95 +6,59 @@ import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
 import android.os.Bundle
-import android.os.Handler
 import android.preference.PreferenceManager
 import android.view.*
 import android.webkit.*
 import android.widget.ProgressBar
-import android.widget.TableLayout
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : Activity() {
 
-    private var mWebView: WebView? = null
-    private var webPost: WebView? = null
-    private var Pbar: ProgressBar? = null
-    private var localURL: String = ""
-    private var globalURL: String = ""
     private var serverURL = ""
-    private var login: String? = ""
-    private var passw: String? = ""
-    private var pathHomepage: String? = ""
-    private var pathVoice: String? = ""
+    private var login = ""
+    private var passw = ""
+    private var pathHomepage = ""
+    private var pathVoice = ""
     private var tmpDostupAccess = ""
     private var tmpAdressAccess = ""
     private var outAccess = false
-    private var firstLoad = false
-
-    override fun onPause() {
-        super.onPause()
-    }
+    private var firstLoad = true
+    private var wifiToast = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Pbar = findViewById<View>(R.id.pB1) as ProgressBar
-        mWebView = findViewById<View>(R.id.webview) as WebView
-        mWebView!!.settings.javaScriptEnabled = true
-        mWebView!!.settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        mWebView!!.webViewClient = MajorDroidWebViewer()
-        webPost = findViewById<View>(R.id.webPost) as WebView
-
-        mWebView!!.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView, progress: Int) {
-                if (progress < 100 && Pbar!!.visibility == ProgressBar.INVISIBLE) {
-                    Pbar!!.visibility = ProgressBar.VISIBLE
-                }
-                Pbar!!.progress = progress
-                if (progress == 100) {
-                    Pbar!!.visibility = ProgressBar.INVISIBLE
-                }
-            }
-        }
-
-        val handler = Handler()
-        val prefs = PreferenceManager
-                .getDefaultSharedPreferences(this)
+        setComponents()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    public override fun onResume() {
+        super.onResume()
+        setScreen()
+        loadSettings()
+        loadHomePage()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView!!.canGoBack()) {
-            mWebView!!.goBack()
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView!!.canGoBack()) {
+            webView!!.goBack()
             return true
         }
         return super.onKeyDown(keyCode, event)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
             R.id.action_about -> {
                 val ab = Intent(this, AboutActivity::class.java)
                 startActivity(ab)
                 return true
             }
-
             R.id.action_quit -> {
-
                 finish()
                 return true
             }
-
             R.id.action_settings -> {
                 val st = Intent(this, PrefsActivity::class.java)
                 startActivity(st)
@@ -104,151 +68,163 @@ class MainActivity : Activity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
     inner class MajorDroidWebViewer : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-            view!!.loadUrl(request!!.getUrl().toString());
+            view!!.loadUrl(request!!.url.toString())
             return true
         }
-
-        override fun onReceivedHttpAuthRequest(view: WebView,
-                                               handler: HttpAuthHandler, host: String, realm: String) {
+        override fun onReceivedHttpAuthRequest(view: WebView, handler: HttpAuthHandler, host: String, realm: String) {
             if (outAccess)
                 handler.proceed(login, passw)
         }
     }
 
-    public override fun onResume() {
-        super.onResume()
-        loadHomePage(0)
+    private fun setComponents() {
+        webView!!.settings.javaScriptEnabled = true
+        webView!!.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+        webView!!.webViewClient = MajorDroidWebViewer()
+
+        webView!!.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView, progress: Int) {
+                if (progress < 100 && pBar!!.visibility == ProgressBar.INVISIBLE) {
+                    pBar!!.visibility = ProgressBar.VISIBLE
+                }
+                pBar!!.progress = progress
+                if (progress == 100) {
+                    pBar!!.visibility = ProgressBar.INVISIBLE
+                }
+            }
+        }
     }
 
-    private fun loadHomePage(immediateLoad: Int) {
-        val prefs = PreferenceManager
-                .getDefaultSharedPreferences(this)
-        localURL = prefs.getString("localaddress", "")
-        globalURL = prefs.getString("globaladdress", "")
+    private fun setScreen() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val vid = prefs.getString("view", "")
+        when (vid) {
+            "1" -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                homeTableLay.visibility = View.VISIBLE
+            }
+            "2" -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+                homeTableLay.visibility = View.VISIBLE
+            }
+            "3" -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+                homeTableLay.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun loadSettings() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val localURL = prefs.getString("localaddress", "")
+        val globalURL = prefs.getString("globaladdress", "")
         pathHomepage = prefs.getString("homepage", "")
         pathVoice = prefs.getString("voiceprocessor", "")
         login = prefs.getString("login", "")
         passw = prefs.getString("passw", "")
         val dostup = prefs.getString("access", "")
-        val vid = prefs.getString("view", "")
         val wifiHomeNet = prefs.getString("wifihomenet", "")
-        var wifiToast = ""
-        val tl = findViewById<View>(R.id.homeTableLay) as TableLayout
 
-        if (vid!!.contains("1")) {
-            window.addFlags(
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            tl.visibility = View.VISIBLE
-        }
-
-        if (vid.contains("2")) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            window.clearFlags(
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-            tl.visibility = View.VISIBLE
-        }
-
-        if (vid.contains("3")) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            window.clearFlags(
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-            tl.visibility = View.GONE
+        when (dostup) {
+            "1" -> {
+                outAccess = false
+                serverURL = localURL
+                wifiToast = ""
+            }
+            "2" -> {
+                outAccess = true
+                serverURL = globalURL
+                wifiToast = ""
+            }
+            "3" -> {
+                if (wifiHomeNet !== "") {
+                    if (isConnectedToSSID(wifiHomeNet)) {
+                        outAccess = false
+                        serverURL = localURL
+                        wifiToast = " (SSID: $wifiHomeNet)"
+                    } else {
+                        outAccess = true
+                        serverURL = globalURL
+                        wifiToast = " (не в домашней сети)"
+                    }
+                } else {
+                    outAccess = false
+                    serverURL = localURL
+                    wifiToast = " (не задана домашняя wifi-сеть)"
+                }
+            }
         }
 
         if (dostup != tmpDostupAccess)
-            firstLoad = false
-
-        if (dostup!!.contains("1")) {
-            outAccess = false
-            serverURL = localURL
-            wifiToast = ""
-            tmpDostupAccess = dostup
-
-        } else if (dostup.contains("2")) {
-            outAccess = true
-            serverURL = globalURL
-            wifiToast = ""
-            tmpDostupAccess = dostup
-
-        } else if (dostup.contains("3")) {
-            if (wifiHomeNet !== "") {
-                if (isConnectedToSSID(wifiHomeNet)) {
-                    outAccess = false
-                    serverURL = localURL
-                    wifiToast = " (SSID: $wifiHomeNet)"
-                } else {
-                    outAccess = true
-                    serverURL = globalURL
-                    wifiToast = " (не в домашней сети)"
-                }
-            } else {
-                outAccess = false
-                serverURL = localURL
-                wifiToast = " (не задана домашняя wifi-сеть)"
-            }
-            tmpDostupAccess = dostup
-        }
+            firstLoad = true
+        tmpDostupAccess = dostup
 
         if (serverURL != tmpAdressAccess)
-            firstLoad = false
+            firstLoad = true
+        tmpAdressAccess = serverURL
 
-        if (!firstLoad || immediateLoad == 1) {
+    }
+
+    private fun loadHomePage() {
+        if (firstLoad) {
             val toast = Toast.makeText(applicationContext, "",
                     Toast.LENGTH_LONG)
             toast.setGravity(Gravity.BOTTOM, 0, 0)
+
             if (outAccess)
                 toast.setText("Глобальный доступ$wifiToast")
             else
                 toast.setText("Локальный доступ$wifiToast")
-            if (serverURL === "") {
+
+            if (serverURL === "")
                 toast.setText("Не задан адрес сервера в настройках")
-                toast.show()
-            } else {
-                mWebView!!.loadUrl("http://$serverURL$pathHomepage")
+            else
+                firstLoad = false
 
-                // потом использовать reload();
+            toast.show()
+        }
 
-                firstLoad = true
-                if (serverURL != tmpAdressAccess)
-                    toast.show()
-                tmpAdressAccess = serverURL
-            }
+        if (serverURL !== "") {
+            webView!!.loadUrl("http://$serverURL$pathHomepage")
         }
     }
 
-    private fun voiceCommand(command: String) {
-        webPost!!.loadUrl("http://$serverURL$pathVoice$command")
-        val toast = Toast.makeText(applicationContext, command,
-                Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.BOTTOM, 0, 0)
-        toast.show()
+    fun imgbHomeClick(v: View?) {
+        loadHomePage()
     }
 
-    fun imgb_home_click(v: View?) {
-        loadHomePage(1)
+    fun imgbVoiceClick(v: View?) {
+
+//        webPost!!.loadUrl("http://$serverURL$pathVoice$command")
+//        val toast = Toast.makeText(applicationContext, command,
+//                Toast.LENGTH_LONG)
+//        toast.setGravity(Gravity.BOTTOM, 0, 0)
+//        toast.show()
     }
 
-    fun imgb_voice_click(v: View?) {
-
-    }
-
-    fun imgb_pult_click(v: View?) {
+    fun imgbPultClick(v: View?) {
         val j = Intent(this, ControsActivity::class.java)
         startActivity(j)
     }
 
-    fun imgb_settings_click(v: View?) {
+    fun imgbSettingsClick(v: View?) {
         val i = Intent(this, PrefsActivity::class.java)
         startActivity(i)
     }
 
-    internal fun isConnectedToSSID(t: String): Boolean {
+    private fun isConnectedToSSID(t: String): Boolean {
         try {
-            val wifiMgr = this
-                    .applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val wifiMgr = this.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
             val wifiInfo = wifiMgr.connectionInfo
             if (wifiInfo.ssid == t)
                 return true

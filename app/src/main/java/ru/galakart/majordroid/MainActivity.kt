@@ -12,10 +12,14 @@ import android.webkit.*
 import android.widget.ProgressBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-
+import android.content.ActivityNotFoundException
+import android.speech.RecognizerIntent
+import java.util.*
+import android.app.AlertDialog
 
 class MainActivity : Activity() {
 
+    private val REQ_CODE_SPEECH_INPUT = 100
     private var serverURL = ""
     private var login = ""
     private var passw = ""
@@ -31,6 +35,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setComponents()
+        showFirstStartTip()
     }
 
     public override fun onResume() {
@@ -204,12 +209,30 @@ class MainActivity : Activity() {
     }
 
     fun imgbVoiceClick(v: View?) {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speechtip))
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
+        } catch (a: ActivityNotFoundException) {
+        }
+    }
 
-//        webPost!!.loadUrl("http://$serverURL$pathVoice$command")
-//        val toast = Toast.makeText(applicationContext, command,
-//                Toast.LENGTH_LONG)
-//        toast.setGravity(Gravity.BOTTOM, 0, 0)
-//        toast.show()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQ_CODE_SPEECH_INPUT -> {
+                if (resultCode == Activity.RESULT_OK && null != data) {
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                    val command = result[0]
+                    webPost!!.loadUrl("http://$serverURL$pathVoice$command")
+                    val toast = Toast.makeText(applicationContext, command, Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.BOTTOM, 0, 0)
+                    toast.show()
+                }
+            }
+        }
     }
 
     fun imgbPultClick(v: View?) {
@@ -231,6 +254,25 @@ class MainActivity : Activity() {
         } catch (a: Exception) {
         }
         return false
+    }
+
+    private fun showFirstStartTip() {
+//        val versionName = BuildConfig.VERSION_NAME
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val changelogShown = prefs.getString("changelogshown", "")
+        if (changelogShown!="1") {
+            val alertDialog = AlertDialog.Builder(this@MainActivity).create()
+            alertDialog.setTitle("Информация")
+            alertDialog.setMessage("Данное приложение содержит только минимальные функции по управлению сервером MajorDomo.\n\n" +
+                    "Более новое приложение от официального разработчика со всеми обновлениями можно скачать в Google Play по названию MajorDroid Official.")
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK"
+            ) { dialog, which -> dialog.dismiss() }
+            alertDialog.show()
+
+            val editor = prefs.edit()
+            editor.putString("changelogshown", "1")
+            editor.commit()
+        }
     }
 }
 /*

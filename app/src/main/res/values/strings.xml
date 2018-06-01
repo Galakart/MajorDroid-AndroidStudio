@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MajorDroid</string>
+    <string name="app_name">MajorDroid Minimal</string>
     <string name="on">Вкл</string>
     <string name="off">Выкл</string>
     <string name="plain">Обычный</string>
@@ -71,5 +71,6 @@
     <string name="wificurrentnet">Текущая домашняя сеть: </string>
     <string name="wifichoseto">Поменять её на </string>
     <string name="wifisaved">Сеть сохранена</string>
+    <string name="speechtip">Произнесите команду</string>
 
 </resources>
